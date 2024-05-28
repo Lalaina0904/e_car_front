@@ -33,16 +33,19 @@ export default function LogoSlider({ logos }: LogoSliderProps) {
                                     className="sm:basis-1/2 md:basis-1/3 lg:basis-1/5">
                                     <div className="flex flex-col px-4 py-5 sm:p-6">
                                         <div className="mt-6 flex justify-center gap-3">
-                                            <div>
+                                            <div className="text-center text-slate-600">
                                                 <p>{logo.icon}</p>
+                                                <p className="uppercase text-sm font-semibold pt-2">
+                                                    {logo.name}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
-                        <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 fill-black border-slate-600" />
-                        <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 fill-black border-slate-600" />
+                        <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 fill-white text-white border-2 border-[#013248] bg-[#013248]" />
+                        <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 fill-white text-white border-2 border-[#013248] bg-[#013248]" />
                     </Carousel>
                 </div>
             </section>
