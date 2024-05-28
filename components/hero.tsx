@@ -12,7 +12,7 @@ const Hero = () => {
                             Find your <br /> perfect car
                         </span>
                     </p>
-                    5
+
                     <h1 className="text-5xl font-bold text-slate-100 leading-[4rem] mb-6">
                         Grab Upto 50% Off On Selected Car
                     </h1>
@@ -31,8 +31,8 @@ const Hero = () => {
                     <Image
                         src="/imgs/hero-1.png"
                         alt="hero"
-                        width={800}
-                        height={800}
+                        width={850}
+                        height={850}
                     />
                 </div>
             </div>
