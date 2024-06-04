@@ -13,6 +13,9 @@ import {
     SiVolkswagen,
 } from "react-icons/si";
 
+import Nav from "@/components/nav";
+import Footer from "@/components/footer";
+
 const logos = [
     {
         id: 1,
@@ -48,12 +51,16 @@ const logos = [
 
 export default function Home() {
     return (
-        <main>
-            <Hero />
-            <LogoSlider logos={logos} />
-            <Filters />
-            <Cards />
-            <Faq />
-        </main>
+        <>
+            <Nav />
+            <main>
+                <Hero />
+                <LogoSlider logos={logos} />
+                <Filters />
+                <Cards />
+                <Faq />
+            </main>
+            <Footer />
+        </>
     );
 }

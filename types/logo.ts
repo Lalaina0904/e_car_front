@@ -5,3 +5,9 @@ export type Logo = {
     icon: React.ReactNode;
     name: string;
 };
+
+export type CardData = {
+    title: string;
+    description: string;
+    img: React.ReactNode;
+};

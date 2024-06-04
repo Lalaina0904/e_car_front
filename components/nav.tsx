@@ -68,7 +68,7 @@ const Nav = () => {
                     <div className="mx-4 flex justify-between">
                         <div className="flex gap-2 items-center px-3">
                             <Phone className="w-4" />
-                            <span className="text-[0.75rem]">
+                            <span className="text-[0.75rem] sm:block hidden">
                                 +237 01 02 03 04
                             </span>
                         </div>
@@ -106,13 +106,13 @@ const Nav = () => {
                                 <SelectContent>
                                     <SelectGroup>
                                         <SelectItem value="douala">
-                                            Douala
+                                            Madagascar
                                         </SelectItem>
                                         <SelectItem value="yaounde">
-                                            Yaoundé
+                                            France
                                         </SelectItem>
                                         <SelectItem value="bafoussam">
-                                            Bafoussam
+                                            USA
                                         </SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
@@ -130,14 +130,16 @@ const Nav = () => {
                             <div className="flex me-8 items-center">
                                 <Link
                                     href="/"
-                                    className="uppercase font-bold text-[#013248] text-xl hidden md:block">
+                                    className="uppercase font-bold text-[#013248] text-2xl hidden md:block"
+                                    id="shopLogo">
                                     Shop ' coozy
                                 </Link>
 
                                 <Link
                                     href="/"
-                                    className="uppercase font-bold text-[#013248] text-xl md:hidden">
-                                    S'C.
+                                    className="font-bold text-[#013248] text-xl md:hidden"
+                                    id="shopLogo">
+                                    SC
                                 </Link>
                             </div>
                             {/* --- menu --- */}

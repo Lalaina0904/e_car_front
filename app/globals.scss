@@ -80,6 +80,11 @@
     src: url(/fonts/Satoshi-Regular.otf);
 }
 
+@font-face {
+    font-family: "arizonia";
+    src: url(/fonts/Arizonia-Regular.ttf);
+}
+
 ::-webkit-scrollbar {
     width: 0;
     background: transparent;
@@ -92,6 +97,10 @@ body {
 
 * {
     font-family: "satoshi", sans-serif;
+}
+
+#shopLogo {
+    font-family: "arizonia", sans-serif;
 }
 
 .slider__thumb-13-circle-1 {
