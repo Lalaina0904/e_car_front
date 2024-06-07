@@ -1,6 +1,7 @@
 import { AuthProvider } from "react-admin";
 import Cookies from "js-cookie";
 import { urlBase } from "@/utils/urlBase";
+import { jwtDecode } from "jwt-decode";
 export const authProvider: AuthProvider = {
   login: ({ username, password }) => {
     const request = new Request(urlBase + "/token", {
@@ -20,9 +21,13 @@ export const authProvider: AuthProvider = {
       });
   },
   getIdentity: () => {
+    const token = Cookies.get("token");
+    const decodedToken = jwtDecode<{ sub: string }>(token || "");
+    
+    
     return Promise.resolve({
       id: "id",
-      fullName: "fullname",
+      fullName: decodedToken.sub,
     });
   },
   logout: () => {
