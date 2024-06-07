@@ -8,7 +8,6 @@ import {
     CardTitle,
 } from "./ui/card";
 
-import { Car } from "@/types/car";
 import { Button } from "./ui/button";
 
 const cars = [
