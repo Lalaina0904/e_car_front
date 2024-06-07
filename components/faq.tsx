@@ -38,10 +38,10 @@ const Faq = () => {
                                         right car for you at a reasonable price,
                                         you should first know what type of car
                                         you want and how much you want to spend.
-                                        From there, you'll need to decide which
+                                        From there, you&apos;ll need to decide which
                                         model fits your budget and preferences,
                                         then browse the inventory for possible
-                                        options. After that, it's recommended to
+                                        options. After that, it&apos;s recommended to
                                         get financing before visiting the
                                         dealer. Then you need to view the car,
                                         test drive it and negotiate the sale.
@@ -94,7 +94,7 @@ const Faq = () => {
                                         tests you can do on your used car to
                                         find out if there are certain issues.
                                         Tasks you can perform on your own
-                                        include reading the vehicle's history,
+                                        include reading the vehicle&apos;s history,
                                         viewing the title, checking for rust or
                                         frame damage, checking fluids, looking
                                         for warning lights on the dashboard,
@@ -150,7 +150,7 @@ const Faq = () => {
                                     <Link href="" className="underline">
                                         <li>
                                             Off-Lease Car Glut Might Mean
-                                            Used-Car Buyer's Market
+                                            Used-Car Buyer&apos;s Market
                                         </li>
                                     </Link>
                                 </div>
@@ -162,11 +162,11 @@ const Faq = () => {
                                         How do I finance a used car?
                                     </h3>
                                     <p>
-                                        Using the dealership's lender is
-                                        convenient, but it's best to shop around
+                                        Using the dealership&apos;s lender is
+                                        convenient, but it&apos;s best to shop around
                                         at banks and credit unions ahead of time
-                                        so you'll know whose rate is best when
-                                        you're at a dealership. This research
+                                        so you&apos;ll know whose rate is best when
+                                        you&apos;re at a dealership. This research
                                         may take a few days but can be well
                                         worth the time.
                                     </p>
@@ -225,11 +225,11 @@ const Faq = () => {
                                 <p>
                                     Extended warranties can be worth the money
                                     if they provide coverage for repairs that
-                                    would otherwise be expensive. However, it's
+                                    would otherwise be expensive. However, it&apos;s
                                     important to read the fine print and
                                     understand what is covered and what is not.
                                     Extended warranties can be expensive, so
-                                    it's important to weigh the cost of the
+                                    it&apos;s important to weigh the cost of the
                                     warranty against the potential cost of
                                     repairs.
                                 </p>

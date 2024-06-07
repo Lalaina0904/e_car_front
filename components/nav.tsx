@@ -132,7 +132,7 @@ const Nav = () => {
                                     href="/"
                                     className="uppercase font-bold text-[#013248] text-2xl hidden md:block"
                                     id="shopLogo">
-                                    Shop ' coozy
+                                    Shop &apos; coozy
                                 </Link>
 
                                 <Link
