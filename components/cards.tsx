@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import {
     Card,
     CardContent,
@@ -57,32 +58,61 @@ const cars = [
 ];
 
 const Cards = () => {
-    return (
-        <>
-            <section className="container mx-auto w-full py-4">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    {cars.map((car, index) => (
-                        <Card key={index} className="border-[#013248]">
-                            <CardHeader>{car.img}</CardHeader>
-                            <CardContent>
-                                <CardTitle className="text-md">
-                                    {car.title}
-                                </CardTitle>
-                                <CardDescription>
-                                    {car.description}
-                                </CardDescription>
-                            </CardContent>
+    const [cardBrand, setCarBrand] = useState<CardData[]>([]);
+    const [pageNumber, setPageNumber] = useState<number>(0);
 
-                            <CardFooter className="flex gap-2 flex-wrap">
-                                <Button className="bg-[#013248] font-semibold text-white uppercase text-xs">
-                                    Details
-                                </Button>
-                            </CardFooter>
-                        </Card>
-                    ))}
-                </div>
-            </section>
-        </>
+    useEffect(() => {
+        fetchData(pageNumber).then((data) => {
+            if (data && data.length > 0) {
+                setCarBrand(data);
+            } else {
+                setPageNumber((prevPageNumber) => prevPageNumber - 1);
+            }
+        });
+        console.log(cardBrand);
+    }, [pageNumber]);
+
+    const handlePreviousBtn = () => {
+        let actualNumber = pageNumber;
+        if (pageNumber > 0) {
+            actualNumber -= 1;
+            setPageNumber(actualNumber);
+        }
+    };
+    console.log(pageNumber);
+    console.log(cardBrand.length);
+
+    const handleNextBtn = () => {
+        let actualNumber = pageNumber;
+        if (cardBrand.length > 0) {
+            actualNumber += 1;
+            setPageNumber(actualNumber);
+        }
+    };
+    return (
+        <div className="container mx-auto my-4">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+                {/* //faire une map pour afficher les cards */}
+                {cardsData.map((card, index) => (
+                    <Card key={index}>
+                        <CardHeader>
+                            {/* <CardTitle>{card.title}</CardTitle> */}
+                            {card.img}
+                        </CardHeader>
+                        <CardContent>
+                            <CardDescription>
+                                {card.description}
+                            </CardDescription>
+                        </CardContent>
+                        <CardFooter>
+                            <button className="btn btn-primary">
+                                Make an Appointment
+                            </button>
+                        </CardFooter>
+                    </Card>
+                ))}
+            </div>
+        </div>
     );
 };
 
