@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect } from "react";
+import React from "react";
 import {
     Card,
     CardContent,
@@ -8,81 +7,60 @@ import {
     CardHeader,
     CardTitle,
 } from "./ui/card";
-import { fetchData } from "@/app/utils/helper";
-import { useState } from "react";
-import { GrFormPrevious } from "react-icons/gr";
-import { GrFormNext } from "react-icons/gr";
 
-interface CardData {
-    name: string;
-}
-interface CardsProps {
-    cardsData: CardData[];
-}
+import { Car } from "@/types/car";
+import { Button } from "./ui/button";
+
+const cars = [
+    {
+        title: "Electric car",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        img: <img src="/imgs/electric.png" alt="electric" />,
+    },
+    {
+        title: "Pickups car",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        img: <img src="/imgs/pickups.png" alt="" />,
+    },
+    {
+        title: "Redesigned",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        img: <img src="/imgs/redesigned.png" alt="" />,
+    },
+    {
+        title: "Card Title 4",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        img: <img src="/imgs/compare.png" alt="" />,
+    },
+];
 
 const Cards = () => {
-    const [cardBrand, setCarBrand] = useState<CardData[]>([]);
-    const [pageNumber, setPageNumber] = useState<number>(0);
-
-    useEffect(() => {
-        fetchData(pageNumber).then((data) => {
-            if (data && data.length > 0) {
-                setCarBrand(data);
-            } else {
-                setPageNumber((prevPageNumber) => prevPageNumber - 1);
-            }
-        });
-        console.log(cardBrand);
-    }, [pageNumber]);
-
-    const handlePreviousBtn = () => {
-        let actualNumber = pageNumber;
-        if (pageNumber > 0) {
-            actualNumber -= 1;
-            setPageNumber(actualNumber);
-        }
-    };
-    console.log(pageNumber);
-    console.log(cardBrand.length);
-
-    const handleNextBtn = () => {
-        let actualNumber = pageNumber;
-        if (cardBrand.length > 0) {
-            actualNumber += 1;
-            setPageNumber(actualNumber);
-        }
-    };
     return (
-        <div className="container mx-auto my-4">
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
-                {/* //faire une map pour afficher les cards */}
-                {cardBrand.map((card, index) => (
-                    <Card key={index}>
-                        <CardHeader>
-                            <CardTitle>{card.name}</CardTitle>
-                        </CardHeader>
-                        <CardFooter>
-                            <button className="btn btn-primary">
-                                Make an Appointment
-                            </button>
-                        </CardFooter>
-                    </Card>
-                ))}
-            </div>
-            <div className="flex flex-row gap-12 justify-end py-5">
-                <button
-                    className="flex flex-row items-center hover:scale-95 duration-75"
-                    onClick={handlePreviousBtn}>
-                    <GrFormPrevious /> previous
-                </button>
-                <button
-                    disabled={!cardBrand.length}
-                    className="flex flex-row items-center hover:scale-95 duration-75"
-                    onClick={handleNextBtn}>
-                    next <GrFormNext />
-                </button>
-            </div>
-        </div>
+        <>
+            <section className="container mx-auto w-full py-4">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                    {cars.map((car, index) => (
+                        <Card key={index} className="border-[#4a7b92]">
+                            <CardHeader>{car.img}</CardHeader>
+                            <CardContent>
+                                <CardTitle className="text-md">
+                                    {car.title}
+                                </CardTitle>
+                                <CardDescription>
+                                    {car.description}
+                                </CardDescription>
+                            </CardContent>
+
+                            <CardFooter>
+                                <Button className="w-full bg-[#013248] font-semibold text-white uppercase text-xs">
+                                    Details
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+            </section>
+        </>
     );
 };
 
