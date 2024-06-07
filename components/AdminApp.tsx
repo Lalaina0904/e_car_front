@@ -16,13 +16,13 @@ import jsonServerProvider from "ra-data-json-server";
 import { authProvider } from "@/lib/authProvider";
 import { dataProvider } from "@/lib/dataProvider";
 import { UserList } from "./userList";
-// import { Hello } from "./helloWorld";
+import { AppointmentList } from "./appointment";
 
 const myTheme = {
     ...defaultTheme,
     palette: {
         primary: {
-            main: "#013248", // Changez cette valeur pour la couleur principale de la navbar
+            main: "#013248",
         },
         secondary: {
             main: "#013248",
@@ -32,7 +32,6 @@ const myTheme = {
         },
     },
     typography: {
-        // Use the system font instead of the default Roboto font.
         fontFamily: [
             "-apple-system",
             "BlinkMacSystemFont",
@@ -62,7 +61,9 @@ const AdminApp = () => (
         authProvider={authProvider}
         theme={myTheme}
         basename="/admin">
-        <Resource name="users" list={UserList} />
+        <Resource name="user" list={UserList} />
+        <Resource name="appointments" list={AppointmentList} />
+        <Resource name="cars" />
 
         {/* 
             
