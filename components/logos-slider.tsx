@@ -12,12 +12,14 @@ import {
 
 import { Logo } from "@/types/logo";
 import Link from "next/link";
-
+import { useState } from "react";
 interface LogoSliderProps {
     logos: Logo[];
 }
 
 export default function LogoSlider({ logos }: LogoSliderProps) {
+    const [clicked, setIsClicked] = useState(false);
+    const hanleClick = () => {
     return (
         <>
             <section className="container mx-auto w-full py-4">
@@ -35,7 +37,7 @@ export default function LogoSlider({ logos }: LogoSliderProps) {
                                     <div className="flex flex-col px-4 py-5 sm:p-6">
                                         <div className="mt-6 flex justify-center gap-3">
                                             <div className="text-center text-slate-600">
-                                                <Link href="">
+                                                <Link href="" >
                                                     <p>{logo.icon}</p>
                                                     <p className="uppercase text-sm font-semibold pt-2">
                                                         {logo.name}
@@ -54,4 +56,5 @@ export default function LogoSlider({ logos }: LogoSliderProps) {
             </section>
         </>
     );
+}
 }
