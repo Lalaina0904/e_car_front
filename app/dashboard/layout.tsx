@@ -3,13 +3,13 @@
 import AdminApp from "@/components/AdminApp";
 
 export default function DashboardLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return (
-        <>
-            <AdminApp />
-        </>
-    );
+  return (
+    <>
+      <AdminApp />
+    </>
+  );
 }
