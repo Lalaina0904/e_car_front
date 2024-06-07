@@ -61,6 +61,9 @@ const AdminApp = () => (
         name="appointments"
         list={AppointmentList}
         />
+        <Resource
+        name="cars"
+        />
       
         {
             /* 
