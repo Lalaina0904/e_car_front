@@ -8,7 +8,7 @@ import {
     CardHeader,
     CardTitle,
 } from "./ui/card";
-import { fetchData } from "@/app/utils/helper";
+// import { fetchData } from "@/app/utils/helper";
 import { useState } from "react";
 import { GrFormPrevious } from "react-icons/gr";
 import { GrFormNext } from "react-icons/gr";

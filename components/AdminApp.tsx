@@ -61,7 +61,6 @@ const AdminApp = () => (
         dataProvider={dataProvider}
         authProvider={authProvider}
         theme={myTheme}
-        darkTheme={houseDarkTheme}
         basename="/admin">
         <Resource name="users" list={UserList} />
 
