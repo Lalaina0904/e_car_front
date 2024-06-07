@@ -30,8 +30,8 @@ const page = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-2">
-                    <div>
+                <div className="grid grid-cols-4">
+                    <div className="col-span-3 mr-10">
                         <h2 className="text-xl font-semibold text-slate-700">
                             Latest news
                         </h2>
@@ -64,6 +64,8 @@ const page = () => {
                                 much better range and efficiency, though
                             </p>
 
+                            <br />
+
                             <p>
                                 BMW has really made a mark in the electric car
                                 market, and the iX2 is the latest addition to
@@ -76,11 +78,29 @@ const page = () => {
                         </div>
                     </div>
                     {/* --- */}
-                    <div>
+                    <div className="col-span-1">
                         <div>
                             <h2 className="text-xl font-semibold text-slate-700">
                                 Featured
                             </h2>
+
+                            <div>
+                                <div>
+                                    <Image
+                                        src="/imgs/featured.png"
+                                        alt="featured"
+                                        width={200}
+                                        height={200}
+                                    />
+                                </div>
+                                <p className="font-semibold text-sm">
+                                    News 2024
+                                </p>
+                                <p>
+                                    Jeep Wagoneer S Up Close: Reimagining the
+                                    Trackhawk
+                                </p>
+                            </div>
                         </div>
                         <div>
                             <h2 className="text-xl font-semibold text-slate-700">

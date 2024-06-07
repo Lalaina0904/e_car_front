@@ -33,6 +33,11 @@ const logos = [
         icon: <SiBmw size="60" />,
     },
     {
+        id: 5,
+        name: "Volkswagen",
+        icon: <SiVolkswagen size="60" />,
+    },
+    {
         id: 4,
         name: "Acura",
         icon: <SiAcura size="60" />,
@@ -41,11 +46,6 @@ const logos = [
         id: 6,
         name: "Toyota",
         icon: <SiToyota size="60" />,
-    },
-    {
-        id: 5,
-        name: "Volkswagen",
-        icon: <SiVolkswagen size="60" />,
     },
 ];
 
