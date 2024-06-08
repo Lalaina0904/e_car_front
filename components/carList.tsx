@@ -15,6 +15,8 @@ import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardFooter }
 import { useState,useEffect } from "react";
 import { get } from "@/utils/apiUtils";
 import { urlBase } from "@/utils/urlBase";
+import { DataProvider } from "react-admin";
+import { dataProvider } from "@/lib/dataProvider";
 type Car={
     id: string,
     model: string,
@@ -36,6 +38,7 @@ export const CarList=()=>{
     getCars()
   console.log(cars);
 },[])
+
     return(
         <div className="container mx-auto">
              <Dialog >
@@ -62,8 +65,16 @@ export const CarList=()=>{
 }
 
 const Car=(car:Car)=>{
+    const handleDelete=(id:string)=>async()=>{
+    const response=await dataProvider.delete("car/delete",{id:id});
+    console.log(response);
+
+
+}
     return(
-          <Card key={car.id} className="border-[#4a7b92]">
+          <Card key={car.id} className="border-[#4a7b92] h-72">
+           
+               
               <CardHeader><img src={car.pics[0]} alt="" /></CardHeader>
               <CardContent>
                 <CardTitle className="text-md">{car.model}</CardTitle>
