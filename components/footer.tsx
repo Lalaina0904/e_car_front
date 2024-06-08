@@ -12,7 +12,9 @@ import {
 import Image from "next/image";
 
 const Footer = () => {
-  return (
+  
+  
+    return (
     <div className="container mx-auto">
       <div className="grid md:grid-cols-2 gap-4 bg-slate-300 px-10 py-16 rounded-lg my-14">
         <div>
