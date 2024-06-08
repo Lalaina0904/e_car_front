@@ -11,13 +11,36 @@ import {
 } from "@/components/ui/dialog"
 import { Label } from "@radix-ui/react-select";
 import { Input } from "postcss";
-
+import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardFooter } from "./ui/card";
+import { useState,useEffect } from "react";
+import { get } from "@/utils/apiUtils";
+import { urlBase } from "@/utils/urlBase";
+type Car={
+    id: string,
+    model: string,
+    price: number,
+    motorType: string,
+    power: number,
+    description:string
+    pics:string[]
+}
 export const CarList=()=>{
+    const [cars,setCars]=useState<Car[]>([]);
+
+    useEffect(() => {
+    const getCars=async()=>{
+        const response=await(get(urlBase+"/cars"));
+        const data=await response;
+        setCars(data);
+    }
+    getCars()
+  console.log(cars);
+},[])
     return(
         <div className="container mx-auto">
              <Dialog >
-      <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+      <DialogTrigger asChild className="my-16">
+        <Button variant="outline">new car+</Button>
       </DialogTrigger>
       <DialogContent >
         <div className="grid gap-4 py-4">
@@ -25,16 +48,33 @@ export const CarList=()=>{
         </div>
       </DialogContent>
     </Dialog>
-            <Button>
-                <div className="text-center text-3xl uppercase font-medium py-4">
-                    new car +
-                </div>
-            </Button>
             <section className="flex justify-between">
                 <div>
-                    <div className="text-xl text-neutral-100">...</div>
+                    <div className="text-xl text-neutral-100 grid grid-cols-6 gap-3">
+                        {
+                            cars.map((car)=>Car(car))
+                        }
+                    </div>
                 </div>
             </section>
         </div>
     );
+}
+
+const Car=(car:Car)=>{
+    return(
+          <Card key={car.id} className="border-[#4a7b92]">
+              <CardHeader><img src={car.pics[0]} alt="" /></CardHeader>
+              <CardContent>
+                <CardTitle className="text-md">{car.model}</CardTitle>
+                <CardDescription>{car.description}</CardDescription>
+              </CardContent>
+
+              <CardFooter>
+                <Button className="w-full bg-[#013248] font-semibold text-white uppercase text-xs">
+                  Details
+                </Button>
+              </CardFooter>
+            </Card>
+    )
 }
