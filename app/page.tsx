@@ -16,6 +16,9 @@ import {
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 
+
+
+
 const logos = [
   {
     id: 1,
@@ -49,6 +52,27 @@ const logos = [
   },
 ];
 
+
+
+
+//car list
+const cars = [
+  { id: "1", model: "Model S", price: 100000, motorType: "Electric", power: 100, pics: ["/imgs/electric.png"] },
+   
+  
+  
+  {
+     id: "2", model: "Model X", price: 120000, motorType: "Electric", power: 120, pics: ["/imgs/pickups.png"] ,
+
+  },
+  {
+      id: "3", model: "Model 3", price: 80000, motorType: "Electric", power: 80, pics: ["/imgs/redesigned.png"] ,
+  },
+  {
+    id: "4", model: "Model Y", price: 90000, motorType: "Electric", power: 90, pics: ["/imgs/compare.png"]
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -57,7 +81,7 @@ export default function Home() {
         <Hero />
         <LogoSlider logos={logos} />
         <Filters />
-        <Cards />
+        <Cards/>
         <Faq />
       </main>
       <Footer />

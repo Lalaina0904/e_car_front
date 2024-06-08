@@ -25,8 +25,35 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {get} from "@/utils/apiUtils";
+import { list } from "postcss";
+import { useEffect, useState } from "react";
+import { urlBase } from "@/utils/urlBase";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "react-admin";
+import Image from "next/image";
+
+type Car={
+    id: string,
+    model: string,
+    price: number,
+    motorType: string,
+    power: number,
+    description:string
+    pics:string[]
+}
 
 export default function LogoSlider({ logos }: LogoSliderProps) {
+    const [cars,setCars]=useState<Car[]>([]);
+    const [brand,setBrand]=useState<string>("");
+   
+  const getCars=async(brand:string,pageNumber:number)=>{
+        const response=await get(urlBase+"/cars/"+brand+"?pageNumber="+pageNumber);
+        const data=await response
+        setCars(data);
+        console.log(data);
+        
+      }
   return (
     <>
       <section className="container mx-auto w-full py-4">
@@ -45,7 +72,7 @@ export default function LogoSlider({ logos }: LogoSliderProps) {
                       <div className="mt-6 flex justify-center gap-3">
                         <div className="text-center text-slate-600">
                           <DialogTrigger asChild>
-                            <Link href="">
+                            <Link href="" onClick={()=>getCars(logo.name,0)}>
                               <div className="flex justify-center">
                                 {logo.icon}
                               </div>
@@ -68,6 +95,11 @@ export default function LogoSlider({ logos }: LogoSliderProps) {
                         you're done.
                       </DialogDescription>
                     </DialogHeader>
+                    <div className="grid grid-cols-6 gap-1">
+                        {
+                            cars.map(car=>Car(car))
+                        }
+                    </div>
                   </DialogContent>
                 </Dialog>
               ))}
@@ -79,4 +111,22 @@ export default function LogoSlider({ logos }: LogoSliderProps) {
       </section>
     </>
   );
+}
+
+const Car=(car:Car)=>{
+        return(
+                    <div key={car.id} className="border-[#4a7b92] border rounded-sm  flex flex-col items-center gap-2 h-96">
+                            <div><Image src={car.pics[0]} width={300} height={400} alt="" /></div>
+                            <div>
+                                <div className="text-md text-center text-2xl">{car.model}</div>
+                                <div>{car.description}</div>
+                            </div>
+
+                            <div>
+                                <button className="bg-[#013248] w-20 h-7 font-semibold text-white uppercase text-xs rounded-lg mx-auto">
+                                    <span>Details</span>
+                                </button>
+                            </div>
+                    </div>
+        )
 }
