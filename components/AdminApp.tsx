@@ -1,71 +1,73 @@
 "use client";
 
 import {
-    Admin,
-    Resource,
-    ListGuesser,
-    EditGuesser,
-    nanoLightTheme,
-    defaultLightTheme,
-    defaultDarkTheme,
-    houseDarkTheme,
-    houseLightTheme,
-    defaultTheme,
+  Admin,
+  Resource,
+  ListGuesser,
+  EditGuesser,
+  nanoLightTheme,
+  defaultLightTheme,
+  defaultDarkTheme,
+  houseDarkTheme,
+  houseLightTheme,
+  defaultTheme,
 } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
 import { authProvider } from "@/lib/authProvider";
 import { dataProvider } from "@/lib/dataProvider";
 import { UserList } from "./userList";
 import { AppointmentList } from "./appointment";
+import { CarList } from "./carList";
 
 const myTheme = {
-    ...defaultTheme,
-    palette: {
-        primary: {
-            main: "#013248",
-        },
-        secondary: {
-            main: "#013248",
-        },
-        background: {
-            default: "#f5f5f5",
-        },
+  ...defaultTheme,
+  palette: {
+    primary: {
+      main: "#013248",
     },
-    typography: {
-        fontFamily: [
-            "-apple-system",
-            "BlinkMacSystemFont",
-            '"Segoe UI"',
-            "Arial",
-            "sans-serif",
-        ].join(","),
+    secondary: {
+      main: "#013248",
     },
-    components: {
-        ...defaultTheme.components,
-        MuiTextField: {
-            defaultProps: {
-                variant: "outlined" as const,
-            },
-        },
-        MuiFormControl: {
-            defaultProps: {
-                variant: "outlined" as const,
-            },
-        },
+    background: {
+      default: "#f5f5f5",
     },
+  },
+  typography: {
+    fontFamily: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Arial",
+      "sans-serif",
+    ].join(","),
+  },
+  components: {
+    ...defaultTheme.components,
+    MuiTextField: {
+      defaultProps: {
+        variant: "outlined" as const,
+      },
+    },
+    MuiFormControl: {
+      defaultProps: {
+        variant: "outlined" as const,
+      },
+    },
+  },
 };
 
 const AdminApp = () => (
-    <Admin
-        dataProvider={dataProvider}
-        authProvider={authProvider}
-        theme={myTheme}
-        basename="/admin">
-        <Resource name="user" list={UserList} />
-        <Resource name="appointments" list={AppointmentList} />
-        <Resource name="cars" />
+  <Admin
+    dataProvider={dataProvider}
+    authProvider={authProvider}
+    theme={myTheme}
+    basename="/admin"
+  >
+    <Resource name="user" list={UserList} />
+    <Resource name="appointments" list={AppointmentList} />
+    <Resource name="cars" list={CarList} />
 
-        {/* 
+    {/* 
             
         <Resource
             name="posts"
@@ -75,7 +77,7 @@ const AdminApp = () => (
         />
         <Resource name="comments" list={ListGuesser} edit={EditGuesser} />
             */}
-    </Admin>
+  </Admin>
 );
 
 export default AdminApp;

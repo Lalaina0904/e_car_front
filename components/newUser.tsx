@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -11,39 +11,35 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Button } from "./ui/button"
-import { useDataProvider } from "react-admin"
-import { redirect } from "next/navigation"
-
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "./ui/button";
+import { useDataProvider } from "react-admin";
+import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
-  email:z.string().email(),
-  password:z.string()
-})
- 
+  email: z.string().email(),
+  password: z.string(),
+});
+
 export function NewUserForm() {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      email:"",
-      password:""
+      email: "",
+      password: "",
     },
-  })
+  });
 
-  const dataProvider=useDataProvider();
- 
+  const dataProvider = useDataProvider();
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
-   await dataProvider.create("user/new",{data:values})
-   
-   
-    
-  } 
-    return (
+    await dataProvider.create("user/new", { data: values });
+  }
+  return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
@@ -60,7 +56,7 @@ export function NewUserForm() {
             </FormItem>
           )}
         />
-          <FormField
+        <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
@@ -74,7 +70,7 @@ export function NewUserForm() {
             </FormItem>
           )}
         />
-          <FormField
+        <FormField
           control={form.control}
           name="password"
           render={({ field }) => (
@@ -88,8 +84,8 @@ export function NewUserForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" >Submit</Button>
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
-  )
+  );
 }
