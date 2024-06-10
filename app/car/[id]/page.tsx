@@ -13,7 +13,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button";
+import { NewApointmentForm } from "@/components/newAppointmentForm";
 
 const page = () => {
   return (
@@ -114,7 +124,22 @@ const page = () => {
                       <div className="font-semibold">color:</div>
                       <div className=" text-slate-700">black</div>
                     </div>
-                    <Button className="text-2xl mt-8" >appointment</Button>
+                     <Dialog>
+      <DialogTrigger asChild>
+        <Button className="text-2xl mt-8" >appointment</Button>
+      </DialogTrigger>
+      <DialogContent className="">
+        <DialogHeader>
+          <DialogTitle>make an appointment</DialogTitle>
+          <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+      
+        <NewApointmentForm/>
+      </DialogContent>
+    </Dialog>
+                    
                 </div>
                 
           </div>

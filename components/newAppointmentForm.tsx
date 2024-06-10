@@ -17,18 +17,19 @@ import { Button } from "./ui/button";
 import { useDataProvider } from "react-admin";
 import { redirect } from "next/navigation";
 
+
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   firstName: z.string().min(2).max(50),
   email: z.string().email(),
   message: z.string().min(2).max(50),
   contact: z.string().min(2).max(50),
-  appointmentDate: z.string().min(2).max(50),
+  appointmentDate:z.date(),
   idCar: z.string().min(2).max(50),
   status: z.string().min(2).max(50),
 });
 
-export function NewUserForm(idCar:string) {
+export function NewApointmentForm(idCar:string) {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,7 +39,7 @@ export function NewUserForm(idCar:string) {
       email: "",
       message: "",
       contact: "",
-      appointmentDate: "",
+      appointmentDate:new Date(),
 
       idCar: idCar,
       status: "pending",
@@ -46,10 +47,10 @@ export function NewUserForm(idCar:string) {
     },
   });
 
-  const dataProvider =  useDataProvider();
+  //const dataProvider =  useDataProvider();
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await dataProvider.create("appointment/new", { data: values });
+   // await dataProvider.create("appointment/new", { data: values });
   }
   return (
     <Form {...form}>
@@ -96,20 +97,7 @@ export function NewUserForm(idCar:string) {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="message"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>message</FormLabel>
-              <FormControl>
-                <Input placeholder="message" {...field} />
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        
           <FormField
           control={form.control}
           name="appointmentDate"
@@ -117,7 +105,7 @@ export function NewUserForm(idCar:string) {
             <FormItem>
               <FormLabel>date</FormLabel>
               <FormControl>
-                <Input placeholder="date" {...field} />
+                <Input placeholder="date" type="date" {...field} />
               </FormControl>
 
               <FormMessage />
@@ -132,6 +120,20 @@ export function NewUserForm(idCar:string) {
               <FormLabel>contact</FormLabel>
               <FormControl>
                 <Input placeholder="contact" {...field} />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>message</FormLabel>
+              <FormControl>
+                <textarea placeholder="message" {...field} />
               </FormControl>
 
               <FormMessage />

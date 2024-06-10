@@ -16,6 +16,15 @@ import { set } from "react-hook-form";
 import Image from "next/image";
 import { IoMdSpeedometer } from "react-icons/io";
 import { BsFuelPump } from "react-icons/bs";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 type Car = {
     id:string,
     model: string,
