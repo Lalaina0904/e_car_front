@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDataProvider } from "react-admin";
 import { Button } from "./ui/button";
+import { urlBase } from "@/utils/urlBase";
 type Appointment = {
   name: string;
   firstName: string;
@@ -42,7 +43,7 @@ export const AppointmentList = () => {
 const Appointment = ({ appointment }: { appointment: Appointment }) => {
   const dataProvider = useDataProvider();
   const handleStatus = (id: string, status: string) => {
-    dataProvider
+    /*dataProvider
       .update("appointment/update/", {
         id: { id },
         data: { status },
@@ -50,7 +51,16 @@ const Appointment = ({ appointment }: { appointment: Appointment }) => {
       })
       .then(() => {
         console.log("status updated");
-      });
+      });*/
+      fetch(urlBase+"/appointment/update/"+id,{
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(status),
+      }).then((response) => {
+        console.log(response);
+      })
   };
   return (
     <div>
@@ -76,7 +86,7 @@ const Appointment = ({ appointment }: { appointment: Appointment }) => {
         <div className="flex flex-col gap-2">
           <Button
             className="bg-[#013248] uppercase"
-            onClick={() => handleStatus(appointment.id, "update")}
+            onClick={() => handleStatus(appointment.id, "valide")}
           >
             validé
           </Button>

@@ -13,6 +13,9 @@ import { Button } from "./ui/button";
 import { describe } from "node:test";
 import { urlBase } from "@/utils/urlBase";
 import { set } from "react-hook-form";
+import Image from "next/image";
+import { IoMdSpeedometer } from "react-icons/io";
+import { BsFuelPump } from "react-icons/bs";
 type Car = {
     id:string,
     model: string,
@@ -61,10 +64,30 @@ const Cards = () => {
 const Car=(car:Car)=>{
     return(
           <Card key={car.id} className="border-[#4a7b92]">
-              <CardHeader><img src={car.pics[0]} alt="" /></CardHeader>
-              <CardContent>
-                <CardTitle className="text-md">{car.model}</CardTitle>
-                <CardDescription>{car.description}</CardDescription>
+              <CardHeader>
+               <div className="relative w-full h-[200px] " >
+                 <Image src={car.pics[0]} alt=""  className="border border-red absolute top-0 left-0"
+                  layout="fill"
+                objectFit="cover"
+                
+                />
+               </div>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-2">
+                  <CardTitle className="text-md mx-auto">{car.model}</CardTitle>
+                  <CardTitle className="mx-auto">{car.price}$</CardTitle>
+                <div className="flex flex-row justify-between">
+                  <div className="flex flex-col gap-1">
+                    <IoMdSpeedometer className="flex flex-row text-3xl items-center" />
+                    <CardDescription>{car.power} KW</CardDescription>
+                  </div>
+                  <div>
+                    <div className="flex flex-col gap-1">
+                      <BsFuelPump className="flex flex-row text-3xl items-center" />
+                      <CardDescription>{car.motorType}</CardDescription>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
 
               <CardFooter>
