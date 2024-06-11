@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 import {
   Select,
@@ -9,8 +9,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+interface FilterProps {
+  onSelect: (value: string) => void;
+}
 
-const Filters = () => {
+const Filters = ({onSelect}:FilterProps) => {
+   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onSelect(e.target.value);
+    console.log(e.target.value);
+    
+  };
   return (
     <div className="container mx-auto flex justify-between my-14">
       <div className="flex gap-4">
@@ -19,8 +27,8 @@ const Filters = () => {
           <SelectTrigger className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto">
             <SelectValue placeholder="Car Type" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
+          <SelectContent >
+            <SelectGroup >
               <SelectItem value="sport">Sports</SelectItem>
               <SelectItem value="pickup">Pickup</SelectItem>
               <SelectItem value="minivan">Minivan</SelectItem>
@@ -33,7 +41,7 @@ const Filters = () => {
             <SelectValue placeholder="Price" />
           </SelectTrigger>
           <SelectContent>
-            <SelectGroup>
+            <SelectGroup onSelect={handleChange}>
               <SelectItem value="0-100">0-100</SelectItem>
               <SelectItem value="100-200">100-200</SelectItem>
               <SelectItem value="200-300">200-300</SelectItem>
@@ -41,12 +49,12 @@ const Filters = () => {
           </SelectContent>
         </Select>
         {/* --- Review --- */}
-        <Select>
+        <Select >
           <SelectTrigger className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto">
             <SelectValue placeholder="Review" />
           </SelectTrigger>
           <SelectContent>
-            <SelectGroup>
+            <SelectGroup onSelect={handleChange}>
               <SelectItem value="1">1</SelectItem>
               <SelectItem value="2">2</SelectItem>
               <SelectItem value="3">3</SelectItem>
@@ -62,7 +70,7 @@ const Filters = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="black">Black</SelectItem>
+              <SelectItem value="black" >Black</SelectItem>
               <SelectItem value="white">White</SelectItem>
               <SelectItem value="red">Red</SelectItem>
               <SelectItem value="blue">Blue</SelectItem>
@@ -75,7 +83,7 @@ const Filters = () => {
             <SelectValue placeholder="Material" />
           </SelectTrigger>
           <SelectContent>
-            <SelectGroup>
+            <SelectGroup onSelect={handleChange}>
               <SelectItem value="plastic">Plastic</SelectItem>
               <SelectItem value="metal">Metal</SelectItem>
             </SelectGroup>

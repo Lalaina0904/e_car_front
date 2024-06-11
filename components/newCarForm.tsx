@@ -58,7 +58,7 @@ export function NewCarForm() {
 
   const handleFile2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFile2(e.target.files[0]);
+      setFile2(e.target.files[1]);
     }
   };
 

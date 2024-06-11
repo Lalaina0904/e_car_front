@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, ChangeEvent } from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -59,7 +59,16 @@ import { Button } from "./ui/button";
 
 import { Input } from "./ui/input";
 
-const Nav = () => {
+interface NavProps {
+  onSearch: (value: string) => void;
+}
+
+const Nav = ({onSearch}:NavProps) => {
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onSearch(e.target.value);
+  };
+
   return (
     <>
       <div className="sticky top-0 z-10 w-full">
@@ -150,7 +159,8 @@ const Nav = () => {
             <div>
               <div className="relative w-80">
                 <Input
-                  type="text"
+                onChange={handleChange}
+                  type="search"
                   placeholder="Search"
                   className="pr-12 pl-4 rounded-2xl focus-visible:ring-offset-0 focus-visible:ring-slate-400 focus-visible:ring-1"
                 />

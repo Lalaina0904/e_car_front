@@ -1,3 +1,4 @@
+"use client"
 import Cards from "@/components/cards";
 import Faq from "@/components/faq";
 import Filters from "@/components/filters";
@@ -15,6 +16,7 @@ import {
 
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
+import { useState } from "react";
 
 
 
@@ -74,14 +76,21 @@ const cars = [
 ];
 
 export default function Home() {
+   const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+  
+
   return (
     <>
-      <Nav />
+      <Nav onSearch={handleSearch} />
       <main>
         <Hero />
         <LogoSlider logos={logos} />
-        <Filters />
-        <Cards/>
+        <Filters onSelect={handleSearch} />
+        <Cards searchQuery={searchQuery}/>
         <Faq />
       </main>
       <Footer />

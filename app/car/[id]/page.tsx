@@ -1,9 +1,10 @@
+"use server"
 import Footer from "@/components/footer";
 import Nav from "@/components/nav";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
+import { GetServerSideProps } from "next";
  
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -24,14 +25,41 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button";
 import { NewApointmentForm } from "@/components/newAppointmentForm";
+import {urlBase} from "@/utils/urlBase";
 
-const page = () => {
+import {get} from "@/utils/apiUtils";
+import { fetchCarById } from "@/utils/carHelper";
+
+type Car = {
+    id:string,
+    model: string,
+    price: number,
+    motorType: string,
+    power: number,
+    color:string,
+    placeNumber:number,
+    description:string,
+    pics: string[]
+    
+}
+type CarPageProps = {
+  params: {
+    id: string;
+  };
+};
+
+const page = async ({params}:CarPageProps) => {
+  const car: Car = await fetchCarById(params.id);
+const handleSarch=(value:string)=>{
+
+}
+
   return (
     <>
-      <Nav />
+      <Nav onSearch={handleSarch}/>
       <main className="container mx-auto my-4">
         <div className="flex gap-1 text-sm font-semibold text-slate-700">
-          <Link href="/" className="underline">
+          <Link href="/" passHref>
             Home{" "}
           </Link>
           /
@@ -54,7 +82,7 @@ const page = () => {
         <div className="grid grid-cols-4">
           <div className="col-span-3 mr-10">
             <h2 className="text-xl font-semibold text-slate-700">
-              BMW iX2
+              {car.model}
             </h2>
 
             <div className="relative">
@@ -69,14 +97,18 @@ const page = () => {
                
                  <Carousel className="w-full max-w-[600px]">
                     <CarouselContent>
-                      {Array.from({ length: 2 }).map((_, index) => (
-                      <CarouselItem key={index}>
+                      {car.pics.map((pic) => (
+                      <CarouselItem >
                         <div className="p-1">
                           <Card>
                             <CardContent className="flex aspect-square items-center justify-center p-6">
-                              <span className="text-4xl font-semibold w-full"> <Image src="/imgs/cosySec.png" alt="ix2"
+                              <span className="text-4xl font-semibold w-full"> 
+                                {
+                                  <Image src={pic} alt="ix2"
                                 layout="fill"
                                 />
+                                }
+                               
                                 </span>
                             </CardContent>
                         
@@ -94,9 +126,9 @@ const page = () => {
             </div>
 
             <div>
-               In spite of its sharp styling, the BMW iX2 is more practical
-                than you might think, and it is very good to drive too. Other
-                electric cars have much better range and efficiency, though
+               {
+                car.description
+               }
             
             </div>
           </div>
@@ -106,23 +138,23 @@ const page = () => {
                     
                     <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">price:</div>
-                      <div className=" text-slate-700">300k</div>
+                      <div className=" text-slate-700">{car.price}K</div>
                     </div>
                    <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">motor type:</div>
-                      <div className=" text-slate-700">diesel</div>
+                      <div className=" text-slate-700">{car.motorType}</div>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">power:</div>
-                      <div className=" text-slate-700">400</div>
+                      <div className=" text-slate-700">{car.power}</div>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">place number:</div>
-                      <div className=" text-slate-700">4</div>
+                      <div className=" text-slate-700">{car.placeNumber}</div>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">color:</div>
-                      <div className=" text-slate-700">black</div>
+                      <div className=" text-slate-700">{car.color}</div>
                     </div>
                      <Dialog>
       <DialogTrigger asChild>
@@ -136,7 +168,7 @@ const page = () => {
           </DialogDescription>
         </DialogHeader>
       
-        <NewApointmentForm/>
+        <NewApointmentForm idCar={car.id} />
       </DialogContent>
     </Dialog>
                     
