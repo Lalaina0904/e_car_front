@@ -60,13 +60,13 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
 interface NavProps {
-  onSearch: (value: string) => void;
+  onSearch?: (value: string) => void;
 }
 
 const Nav = ({onSearch}:NavProps) => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onSearch(e.target.value);
+    if(onSearch) onSearch(e.target.value)
   };
 
   return (

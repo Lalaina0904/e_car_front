@@ -21,3 +21,13 @@ export async function fetchCarById(id: string){
  }
 
 }
+export async function fetchCarByBrand(brand: string){
+ try{
+     const res = await fetch(`${urlBase}/cars/${brand}`);
+    return res.json();
+ }catch(error){
+    console.log(error);
+    
+ }
+
+}

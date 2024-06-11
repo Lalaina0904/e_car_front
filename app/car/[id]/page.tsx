@@ -50,13 +50,11 @@ type CarPageProps = {
 
 const page = async ({params}:CarPageProps) => {
   const car: Car = await fetchCarById(params.id);
-const handleSarch=(value:string)=>{
 
-}
 
   return (
     <>
-      <Nav onSearch={handleSarch}/>
+      <Nav/>
       <main className="container mx-auto my-4">
         <div className="flex gap-1 text-sm font-semibold text-slate-700">
           <Link href="/" passHref>

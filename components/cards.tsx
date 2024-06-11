@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/dialog"
 import useNavigate from "next/navigation";
 import Link from "next/link";
+import {Car} from "@/components/carCard";
 type Car = {
     id:string,
     model: string,
@@ -80,7 +81,9 @@ const Cards = ({searchQuery}:CardProps) => {
     <>
       <section className="container mx-auto w-full py-4">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {cars.map((car, index) => (
+          {
+            cars.length==0? <div className="text-center text-2xl">no cars found</div>:
+            cars.map((car, index) => (
             <Car id={car.id} model={car.model} price={car.price} motorType={car.motorType} power={car.power} pics={car.pics} key={index} description={car.description} />
           ))}
         </div>
@@ -89,55 +92,5 @@ const Cards = ({searchQuery}:CardProps) => {
   );
 };
 
-const Car=(car:Car)=>{
-    return(
-          <Card key={car.id} className="border-[#4a7b92]">
-              <CardHeader>
-                
-               <div className="relative w-full h-[200px] group" >
-                 <Image src={car.pics[0]} alt=""  className="border border-red absolute top-0 left-0 inset-0 transition-opacity duration-300 group-hover:opacity-0"
-                  layout="fill"
-                objectFit="cover"
-                
-                />
-                 <Image src={car.pics[1]} alt=""  className="border border-red absolute top-0 left-0 inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  layout="fill"
-                objectFit="cover"
-                
-                />
-                
-               
-               </div>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-2">
-                  <CardTitle className="text-md mx-auto">{car.model}</CardTitle>
-                  <CardTitle className="mx-auto">{car.price}$</CardTitle>
-                <div className="flex flex-row justify-between">
-                  <div className="flex flex-col gap-1">
-                    <IoMdSpeedometer className="flex flex-row text-3xl items-center" />
-                    <CardDescription>{car.power} KW</CardDescription>
-                  </div>
-                  <div>
-                    <div className="flex flex-col gap-1">
-                      <BsFuelPump className="flex flex-row text-3xl items-center" />
-                      <CardDescription>{car.motorType}</CardDescription>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
 
-              <CardFooter>
-                  <Button className="w-full bg-[#013248] font-semibold text-white uppercase text-xs"
-                
-                     >
-                    <Link href={`/car/${car.id}`}>
-
-                      Details
-                    </Link>
-                  </Button>
-                
-              </CardFooter>
-            </Card>
-    )
-}
 export default Cards;
