@@ -24,32 +24,32 @@ import { useState } from "react";
 const logos = [
   {
     id: 1,
-    name: "Tesla",
+    name: "tesla",
     icon: <SiTesla size="60" />,
   },
   {
     id: 2,
-    name: "Nissan",
+    name: "nissan",
     icon: <SiNissan size="60" />,
   },
   {
     id: 3,
-    name: "Bnw",
+    name: "bmw",
     icon: <SiBmw size="60" />,
   },
   {
     id: 5,
-    name: "Volkswagen",
+    name: "volkswagen",
     icon: <SiVolkswagen size="60" />,
   },
   {
     id: 4,
-    name: "Acura",
+    name: "acura",
     icon: <SiAcura size="60" />,
   },
   {
     id: 6,
-    name: "Toyota",
+    name: "toyota",
     icon: <SiToyota size="60" />,
   },
 ];

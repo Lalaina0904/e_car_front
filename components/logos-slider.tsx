@@ -32,6 +32,7 @@ import { urlBase } from "@/utils/urlBase";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "react-admin";
 import Image from "next/image";
+import { log } from "console";
 
 type Car={
     id: string,
@@ -72,7 +73,7 @@ export default function LogoSlider({ logos }: LogoSliderProps) {
                       <div className="mt-6 flex justify-center gap-3">
                         <div className="text-center text-slate-600">
                           <DialogTrigger asChild>
-                            <Link href="" onClick={()=>getCars(logo.name,0)}>
+                            <Link href={`/brand/${logo.name}`} onClick={()=>getCars(logo.name,0)}>
                               <div className="flex justify-center">
                                 {logo.icon}
                               </div>
@@ -87,20 +88,6 @@ export default function LogoSlider({ logos }: LogoSliderProps) {
                   </CarouselItem>
                   {/* -------- content ----------- */}
 
-                  <DialogContent className="max-w-[95%] h-[90vh]">
-                    <DialogHeader>
-                      <DialogTitle>{logo.name} Cars</DialogTitle>
-                      <DialogDescription>
-                        Make changes to your profile here. Click save when
-                        you're done.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="grid grid-cols-6 gap-1">
-                        {
-                            cars.map(car=>Car(car))
-                        }
-                    </div>
-                  </DialogContent>
                 </Dialog>
               ))}
             </CarouselContent>

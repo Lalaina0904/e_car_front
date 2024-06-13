@@ -1,5 +1,5 @@
-import { Link } from "lucide-react"
-import { Button } from "react-admin"
+import Link from "next/link"
+import { Button } from "./ui/button"
 import { BsFuelPump } from "react-icons/bs"
 import { IoMdSpeedometer } from "react-icons/io"
 import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardFooter } from "./ui/card"
@@ -56,7 +56,7 @@ export const Car=(car:Car)=>{
                   <Button className="w-full bg-[#013248] font-semibold text-white uppercase text-xs"
                 
                      >
-                    <Link href={`/car/${car.id}`}>
+                    <Link href={`/car/${car.id}`} >
 
                       Details
                     </Link>
