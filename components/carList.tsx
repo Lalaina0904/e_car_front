@@ -17,6 +17,9 @@ import { get } from "@/utils/apiUtils";
 import { urlBase } from "@/utils/urlBase";
 import { DataProvider } from "react-admin";
 import { dataProvider } from "@/lib/dataProvider";
+import Image from "next/image";
+import { BsFuelPump } from "react-icons/bs";
+import { IoMdSpeedometer } from "react-icons/io";
 type Car={
     id: string,
     model: string,
@@ -51,9 +54,9 @@ export const CarList=()=>{
         </div>
       </DialogContent>
     </Dialog>
-            <section className="flex justify-between">
+            <section className="">
                 <div>
-                    <div className="text-xl text-neutral-100 grid grid-cols-6 gap-3">
+                    <div className="text-xl text-neutral-100 grid grid-cols-4 gap-3 w-full">
                         {
                             cars.map((car)=>Car(car))
                         }
@@ -64,27 +67,51 @@ export const CarList=()=>{
     );
 }
 
-const Car=(car:Car)=>{
-    const handleDelete=(id:string)=>async()=>{
-    const response=await dataProvider.delete("car/delete",{id:id});
-    console.log(response);
-
-
-}
+ const Car=(car:Car)=>{
     return(
-          <Card key={car.id} className="border-[#4a7b92] h-72">
-           
+          <Card key={car.id} className="border-[#4a7b92]">
+              <CardHeader>
+                
+               <div className="relative w-full h-[200px] group" >
+                 <Image src={car.pics[0]} alt=""  className="border border-red absolute top-0 left-0 inset-0 transition-opacity duration-300 group-hover:opacity-0"
+                  layout="fill"
+                objectFit="cover"
+                
+                />
+                 <Image src={car.pics[1]} alt=""  className="border border-red absolute top-0 left-0 inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  layout="fill"
+                objectFit="cover"
+                
+                />
+                
                
-              <CardHeader><img src={car.pics[0]} alt="" /></CardHeader>
-              <CardContent>
-                <CardTitle className="text-md">{car.model}</CardTitle>
-                <CardDescription>{car.description}</CardDescription>
+               </div>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-2">
+                  <CardTitle className="text-md mx-auto">{car.model}</CardTitle>
+                  <CardTitle className="mx-auto">{car.price}$</CardTitle>
+                <div className="flex flex-row justify-between">
+                  <div className="flex flex-col gap-1">
+                    <IoMdSpeedometer className="flex flex-row text-3xl items-center" />
+                    <CardDescription>{car.power} KW</CardDescription>
+                  </div>
+                  <div>
+                    <div className="flex flex-col gap-1">
+                      <BsFuelPump className="flex flex-row text-3xl items-center" />
+                      <CardDescription>{car.motorType}</CardDescription>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
 
               <CardFooter>
-                <Button className="w-full bg-[#013248] font-semibold text-white uppercase text-xs">
-                  Details
-                </Button>
+                  <Button className="w-full bg-[#013248] font-semibold text-white uppercase text-xs"
+                
+                     >
+
+                      Delete
+                  </Button>
+                
               </CardFooter>
             </Card>
     )

@@ -16,6 +16,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
 import { useDataProvider } from "react-admin";
 import { redirect } from "next/navigation";
+import { useState } from "react";
+import { useToast } from "./ui/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
@@ -33,11 +35,20 @@ export function NewUserForm() {
       password: "",
     },
   });
+  const [isLoading,setIsLoading ]=useState(false)
+  const {toast}=useToast()
 
   const dataProvider = useDataProvider();
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await dataProvider.create("user/new", { data: values });
+    setIsLoading(true)
+    await dataProvider.create("user/new", { data: values }).then(()=>{
+      setIsLoading(false);
+      toast({
+        title:"user created",
+        description:"user "+values.name+" created successfully"
+      })
+    })
   }
   return (
     <Form {...form}>
@@ -84,7 +95,7 @@ export function NewUserForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+         <Button type="submit" >{!isLoading?"submit":<div className="w-6 h-6 border-t-2 border-b-black rounded-full animate-spin"></div>}</Button>
       </form>
     </Form>
   );
