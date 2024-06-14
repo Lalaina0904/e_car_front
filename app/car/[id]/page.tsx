@@ -1,9 +1,10 @@
+"use server"
 import Footer from "@/components/footer";
 import Nav from "@/components/nav";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
+import { GetServerSideProps } from "next";
  
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -13,15 +14,50 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button";
+import { NewApointmentForm } from "@/components/newAppointmentForm";
+import {urlBase} from "@/utils/urlBase";
 
-const page = () => {
+import {get} from "@/utils/apiUtils";
+import { fetchCarById } from "@/utils/carHelper";
+
+type Car = {
+    id:string,
+    model: string,
+    price: number,
+    motorType: string,
+    power: number,
+    color:string,
+    placeNumber:number,
+    description:string,
+    pics: string[]
+    
+}
+type CarPageProps = {
+  params: {
+    id: string;
+  };
+};
+
+const page = async ({params}:CarPageProps) => {
+  const car: Car = await fetchCarById(params.id);
+
+
   return (
     <>
-      <Nav />
+      <Nav/>
       <main className="container mx-auto my-4">
         <div className="flex gap-1 text-sm font-semibold text-slate-700">
-          <Link href="/" className="underline">
+          <Link href="/" passHref>
             Home{" "}
           </Link>
           /
@@ -44,7 +80,7 @@ const page = () => {
         <div className="grid grid-cols-4">
           <div className="col-span-3 mr-10">
             <h2 className="text-xl font-semibold text-slate-700">
-              BMW iX2
+              {car.model}
             </h2>
 
             <div className="relative">
@@ -59,14 +95,17 @@ const page = () => {
                
                  <Carousel className="w-full max-w-[600px]">
                     <CarouselContent>
-                      {Array.from({ length: 2 }).map((_, index) => (
-                      <CarouselItem key={index}>
+                      {car.pics.map((pic,index) => (
+                      <CarouselItem >
                         <div className="p-1">
                           <Card>
                             <CardContent className="flex aspect-square items-center justify-center p-6">
-                              <span className="text-4xl font-semibold w-full"> <Image src="/imgs/cosySec.png" alt="ix2"
-                                layout="fill"
-                                />
+                              <span className="text-4xl font-semibold w-full h-full"> 
+                                {
+                                  <img src={pic} className="w-full h-full" />
+                                
+                                }
+                               
                                 </span>
                             </CardContent>
                         
@@ -84,9 +123,9 @@ const page = () => {
             </div>
 
             <div>
-               In spite of its sharp styling, the BMW iX2 is more practical
-                than you might think, and it is very good to drive too. Other
-                electric cars have much better range and efficiency, though
+               {
+                car.description
+               }
             
             </div>
           </div>
@@ -96,25 +135,40 @@ const page = () => {
                     
                     <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">price:</div>
-                      <div className=" text-slate-700">300k</div>
+                      <div className=" text-slate-700">{car.price}$</div>
                     </div>
                    <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">motor type:</div>
-                      <div className=" text-slate-700">diesel</div>
+                      <div className=" text-slate-700">{car.motorType}</div>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">power:</div>
-                      <div className=" text-slate-700">400</div>
+                      <div className=" text-slate-700">{car.power}</div>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">place number:</div>
-                      <div className=" text-slate-700">4</div>
+                      <div className=" text-slate-700">{car.placeNumber}</div>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">color:</div>
-                      <div className=" text-slate-700">black</div>
+                      <div className=" text-slate-700">{car.color}</div>
                     </div>
-                    <Button className="text-2xl mt-8" >appointment</Button>
+                     <Dialog>
+      <DialogTrigger asChild>
+        <Button className="text-2xl mt-8" >appointment</Button>
+      </DialogTrigger>
+      <DialogContent className="">
+        <DialogHeader>
+          <DialogTitle>make an appointment</DialogTitle>
+          <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+      
+        <NewApointmentForm idCar={car.id} />
+      </DialogContent>
+    </Dialog>
+                    
                 </div>
                 
           </div>

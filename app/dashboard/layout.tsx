@@ -1,6 +1,7 @@
 "use client";
 
 import AdminApp from "@/components/AdminApp";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function DashboardLayout({
   children,
@@ -9,7 +10,9 @@ export default function DashboardLayout({
 }) {
   return (
     <>
+    
       <AdminApp />
+       <Toaster />
     </>
   );
 }

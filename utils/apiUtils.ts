@@ -7,7 +7,7 @@ const request = async (
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
   };
-  if (token.length > -1) {
+  if (token.length > 1) {
     headers["Authorization"] = `Bearer ${token}`;
   }
 
@@ -24,12 +24,12 @@ const request = async (
 export const get = (url: string, token: string = "") => {
   return request(url, "GET", null, token);
 };
-export const post = (url: string, body: any, token: string = "") => {
+export const Post = (url: string, body: any, token: string = "") => {
   return request(url, "POST", body, token);
 };
-export const put = (url: string, body: any, token: string = "") => {
+export const Put = (url: string, body: any, token: string = "") => {
   return request(url, "PUT", body, token);
 };
-export const deleteRequest = (url: string, token: string = "") => {
+export const DeleteRequest = (url: string, token: string = "") => {
   return request(url, "DELETE", null, token);
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 import {
   Select,
@@ -9,106 +9,76 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+interface FilterProps {
+  onSelect: (value: string) => void;
+}
 
-const Filters = () => {
-  return (
+const Filters = ({onSelect}:FilterProps) => {
+   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    onSelect(e.target.value);
+   
+    
+  };
+ return (
     <div className="container mx-auto flex justify-between my-14">
       <div className="flex gap-4">
-        {/* --- Headphone Type --- */}
-        <Select>
-          <SelectTrigger className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto">
-            <SelectValue placeholder="Car Type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="sport">Sports</SelectItem>
-              <SelectItem value="pickup">Pickup</SelectItem>
-              <SelectItem value="minivan">Minivan</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        {/* --- Price --- */}
-        <Select>
-          <SelectTrigger className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto">
-            <SelectValue placeholder="Price" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="0-100">0-100</SelectItem>
-              <SelectItem value="100-200">100-200</SelectItem>
-              <SelectItem value="200-300">200-300</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        {/* --- Review --- */}
-        <Select>
-          <SelectTrigger className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto">
-            <SelectValue placeholder="Review" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="1">1</SelectItem>
-              <SelectItem value="2">2</SelectItem>
-              <SelectItem value="3">3</SelectItem>
-              <SelectItem value="4">4</SelectItem>
-              <SelectItem value="5">5</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        {/* --- color --- */}
-        <Select>
-          <SelectTrigger className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto">
-            <SelectValue placeholder="Color" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="black">Black</SelectItem>
-              <SelectItem value="white">White</SelectItem>
-              <SelectItem value="red">Red</SelectItem>
-              <SelectItem value="blue">Blue</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        {/* --- Material --- */}
-        <Select>
-          <SelectTrigger className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto">
-            <SelectValue placeholder="Material" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="plastic">Plastic</SelectItem>
-              <SelectItem value="metal">Metal</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        {/* --- All Filters --- */}
-        <Select>
-          <SelectTrigger className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto">
-            <SelectValue placeholder="All Filters" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="all">All</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        {/* Car Type */}
+        <select onChange={handleChange} className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto p-2 outline-none text-gray-600">
+          <option value="">Car Type</option>
+          <option value="sport">Sports</option>
+          <option value="pickup">Pickup</option>
+          <option value="minivan">Minivan</option>
+        </select>
+
+        {/* Price */}
+        <select onChange={handleChange} className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto p-2 outline-none text-gray-600">
+          <option value="">Price</option>
+          <option value="0-100">0-100</option>
+          <option value="100-200">100-200</option>
+          <option value="200-300">200-300</option>
+        </select>
+
+        {/* Review */}
+        <select onChange={handleChange} className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto p-2 outline-none text-gray-600">
+          <option value="">Review</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        {/* Color */}
+        <select onChange={handleChange} className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto p-2 outline-none text-gray-600">
+          <option value="">Color</option>
+          <option value="black">Black</option>
+          <option value="white">White</option>
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+        </select>
+
+        {/* Material */}
+        <select onChange={handleChange} className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto p-2 outline-none text-gray-600">
+          <option value="">Material</option>
+          <option value="plastic">Plastic</option>
+          <option value="metal">Metal</option>
+        </select>
+
+        {/* All Filters */}
+        <select onChange={handleChange} className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto p-2 outline-none text-gray-600">
+          <option value="">All Filters</option>
+          <option value="all">All</option>
+        </select>
       </div>
 
       <div className="flex-none w-32">
-        {/* Store by */}
-
-        <Select>
-          <SelectTrigger className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full">
-            <SelectValue placeholder="Sort by" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="newest">Newest</SelectItem>
-              <SelectItem value="price">Price</SelectItem>
-              <SelectItem value="rating">Rating</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        {/* Sort by */}
+        <select onChange={handleChange} className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full p-2 outline-none text-gray-600">
+          <option value="">Sort by</option>
+          <option value="newest">Newest</option>
+          <option value="price">Price</option>
+          <option value="rating">Rating</option>
+        </select>
       </div>
     </div>
   );
