@@ -96,7 +96,7 @@ const page = async ({params}:CarPageProps) => {
                
                  <Carousel className="w-full max-w-[600px]">
                     <CarouselContent>
-                      {car.pics.map((pic,index) => (
+                      {car.pics&&car.pics.map((pic,index) => (
                       <CarouselItem key={index}>
                         <div className="p-1">
                           <Card>
