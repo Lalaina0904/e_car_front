@@ -49,13 +49,8 @@ type CarPageProps = {
 };
 
 const page = async ({params}:CarPageProps) => {
-try{
     const car: Car = await fetchCarById(params.id)||{};
-}
-catch(error){
-  console.log(error);
-  
-}
+
 
 
   return (
