@@ -62,7 +62,7 @@ export const CarList=()=>{
                 <div>
                     <div className="text-xl text-neutral-100 grid grid-cols-4 gap-3 w-full">
                         {
-                            cars.map((car)=><Car car={car}/>)
+                            cars.map((car)=><Car car={car} key={car.id}/>)
                         }
                     </div>
                 </div>

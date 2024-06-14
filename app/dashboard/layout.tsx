@@ -11,7 +11,9 @@ export default function DashboardLayout({
   return (
     <>
     
-      <AdminApp />
+      <main>
+        {children}
+      </main>
        <Toaster />
     </>
   );

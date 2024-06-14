@@ -1,15 +1,7 @@
-"use client";
+import { NextPage } from "next";
+import dynamic from "next/dynamic";
+const AdminApp = dynamic(() => import("@/components/AdminApp"), { ssr: false });
 
-import * as React from "react";
+const Dashboard: NextPage = () => <AdminApp />;
 
-export default function Dashboard() {
-  return (
-    <div className="container mx-auto">
-      <section className="flex justify-between">
-        <div>
-          <div className="text-xl text-neutral-100">...</div>
-        </div>
-      </section>
-    </div>
-  );
-}
+export default Dashboard;

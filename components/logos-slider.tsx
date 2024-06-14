@@ -62,7 +62,7 @@ export default function LogoSlider({ logos }: LogoSliderProps) {
           <Carousel>
             <CarouselContent>
               {logos.map((logo, index) => (
-                <Dialog>
+                <Dialog key={logo.id}>
                   {/* ---------- item ----------- */}
 
                   <CarouselItem

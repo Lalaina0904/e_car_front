@@ -35,7 +35,7 @@ const page = () => {
             News & actualities
           </h1>
           <p className="text-sm text-slate-700">
-            The latest car news, videos and expert reviews, from Cars.com's
+            The latest car news, videos and expert reviews, from Cars.com&apos;s
             independent automotive journalists
             <br />
           </p>

@@ -71,7 +71,7 @@ const page = async ({params}:CarPageProps) => {
             News & actualities
           </h1>
           <p className="text-sm text-slate-700">
-            The latest car news, videos and expert reviews, from Cars.com's
+            The latest car news, videos and expert reviews, from Cars.com&apos;s
             independent automotive journalists
             <br />
           </p>
@@ -96,7 +96,7 @@ const page = async ({params}:CarPageProps) => {
                  <Carousel className="w-full max-w-[600px]">
                     <CarouselContent>
                       {car.pics.map((pic,index) => (
-                      <CarouselItem >
+                      <CarouselItem key={index}>
                         <div className="p-1">
                           <Card>
                             <CardContent className="flex aspect-square items-center justify-center p-6">
@@ -161,7 +161,7 @@ const page = async ({params}:CarPageProps) => {
         <DialogHeader>
           <DialogTitle>make an appointment</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Make changes to your profile here. Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
       
