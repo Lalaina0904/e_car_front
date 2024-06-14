@@ -53,14 +53,16 @@ export const Car=(car:Car)=>{
               </CardContent>
 
               <CardFooter>
+                 <Link href={`/car/${car.id}`} className="mx-auto" >
                   <Button className="w-full bg-[#013248] font-semibold text-white uppercase text-xs"
                 
                      >
-                    <Link href={`/car/${car.id}`} >
+                   
 
                       Details
-                    </Link>
+                    
                   </Button>
+                </Link>
                 
               </CardFooter>
             </Card>

@@ -95,16 +95,15 @@ const page = async ({params}:CarPageProps) => {
                
                  <Carousel className="w-full max-w-[600px]">
                     <CarouselContent>
-                      {car.pics.map((pic) => (
+                      {car.pics.map((pic,index) => (
                       <CarouselItem >
                         <div className="p-1">
                           <Card>
                             <CardContent className="flex aspect-square items-center justify-center p-6">
-                              <span className="text-4xl font-semibold w-full"> 
+                              <span className="text-4xl font-semibold w-full h-full"> 
                                 {
-                                  <Image src={pic} alt="ix2"
-                                layout="fill"
-                                />
+                                  <img src={pic} className="w-full h-full" />
+                                
                                 }
                                
                                 </span>
@@ -136,7 +135,7 @@ const page = async ({params}:CarPageProps) => {
                     
                     <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">price:</div>
-                      <div className=" text-slate-700">{car.price}K</div>
+                      <div className=" text-slate-700">{car.price}$</div>
                     </div>
                    <div className="flex flex-row gap-1 items-center">
                       <div className="font-semibold">motor type:</div>

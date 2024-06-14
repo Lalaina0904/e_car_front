@@ -13,13 +13,15 @@ import { Label } from "@radix-ui/react-select";
 import { Input } from "postcss";
 import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardFooter } from "./ui/card";
 import { useState,useEffect } from "react";
-import { get } from "@/utils/apiUtils";
+import { get ,DeleteRequest} from "@/utils/apiUtils";
 import { urlBase } from "@/utils/urlBase";
 import { DataProvider } from "react-admin";
 import { dataProvider } from "@/lib/dataProvider";
 import Image from "next/image";
 import { BsFuelPump } from "react-icons/bs";
 import { IoMdSpeedometer } from "react-icons/io";
+import { useToast } from "./ui/use-toast";
+import { DialogClose } from "@radix-ui/react-dialog";
 type Car={
     id: string,
     model: string,
@@ -29,6 +31,8 @@ type Car={
     description:string
     pics:string[]
 }
+
+
 export const CarList=()=>{
     const [cars,setCars]=useState<Car[]>([]);
 
@@ -58,7 +62,7 @@ export const CarList=()=>{
                 <div>
                     <div className="text-xl text-neutral-100 grid grid-cols-4 gap-3 w-full">
                         {
-                            cars.map((car)=>Car(car))
+                            cars.map((car)=><Car car={car}/>)
                         }
                     </div>
                 </div>
@@ -67,7 +71,31 @@ export const CarList=()=>{
     );
 }
 
- const Car=(car:Car)=>{
+ const Car=({car}:{car:Car})=>{
+  const [isLoading,setIsLoading]=useState(false)
+  const {toast}=useToast()
+  const handleDelete=async()=>{
+   try{
+     setIsLoading(true)
+  await DeleteRequest(urlBase+"/car/delete?id="+car.id)
+   }
+   catch(error){
+    console.log(error);
+    
+
+   }
+   finally{
+   setIsLoading(false)
+   toast({
+    title:"deletion",
+    description:"the car is successfully deleted"
+   })
+   window.location.reload()
+   }
+
+ 
+  
+}
     return(
           <Card key={car.id} className="border-[#4a7b92]">
               <CardHeader>
@@ -105,12 +133,39 @@ export const CarList=()=>{
               </CardContent>
 
               <CardFooter>
-                  <Button className="w-full bg-[#013248] font-semibold text-white uppercase text-xs"
-                
-                     >
+                      <Dialog>
+      <DialogTrigger asChild>
+           <Button type="submit" 
+                       className="mx-auto"
+                      
+                       >{!isLoading?"delete":<div className="w-6 h-6 border-t-2 border-b-black rounded-full animate-spin"></div>}
+                       </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+         
+        </DialogHeader>
+        <div className="flex items-center space-x-2">
+          <div className="grid flex-1 gap-2">
+            are you sure to delete this car?
+           
+          </div>
+       
+        </div>
+        <DialogFooter className="sm:justify-start">
+          <DialogClose asChild>
+            <Button type="button" variant="secondary" onClick={handleDelete}>
+              yes
+            </Button>
+          </DialogClose>
+          <DialogClose>
+            <Button variant={"secondary"}>no</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
 
-                      Delete
-                  </Button>
+                    
                 
               </CardFooter>
             </Card>

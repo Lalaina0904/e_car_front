@@ -122,7 +122,7 @@ const Appointment = ({ appointment }: { appointment: Appointment }) => {
             onClick={() => handleStatus(appointment.id, "valide")}
           >
             {
-              isLoading=="valide"?<div className="w-6 h-6 border-t-2 border-b-black rounded-full animate-spin"></div>:"valide"
+              isLoading=="valide"?<div className="w-6 h-6 border-t-2 border-b-black rounded-full animate-spin"></div>:"validate"
             }
           </Button>
           <Button
@@ -130,7 +130,7 @@ const Appointment = ({ appointment }: { appointment: Appointment }) => {
             onClick={() => handleStatus(appointment.id, "refuse")}
           >
              {
-              isLoading=="refuse"?<div className="w-6 h-6 border-t-2 border-b-black rounded-full animate-spin"></div>:"valide"
+              isLoading=="refuse"?<div className="w-6 h-6 border-t-2 border-b-black rounded-full animate-spin"></div>:"reject"
             }
           </Button>
           </div>

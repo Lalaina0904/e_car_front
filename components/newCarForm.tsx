@@ -18,6 +18,17 @@ import { Button } from "./ui/button";
 import { useDataProvider } from "react-admin";
 import { redirect } from "next/navigation";
 import { urlBase } from "@/utils/urlBase";
+import { useToast } from "./ui/use-toast";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 const formSchema = z.object({
   description: z.string().min(5),
@@ -33,6 +44,8 @@ const formSchema = z.object({
 export function NewCarForm() {
       const [file1, setFile1] = useState<File | null>(null);
       const [file2, setFile2] = useState<File | null>(null);
+      const [isLoading,setIsloading]=useState(false)
+      const {toast}=useToast()
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -58,29 +71,47 @@ export function NewCarForm() {
 
   const handleFile2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFile2(e.target.files[1]);
+      setFile2(e.target.files[0]);
     }
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+try{
+      setIsloading(true)
    const carResponse= await dataProvider.create("car/new", { data: values });
    const idCar=carResponse.data.id;
-    const formData = new FormData();
+    const formData1 = new FormData();
+    const formData2=new FormData();
    if(file1){
-      formData.append("file", file1 as File);
+      formData1.append("file", file1 as File);
     
      await fetch(urlBase+"/upload?idCar="+idCar, {
         method: "POST",
-        body: formData,
+        body: formData1,
      });
    }
    if(file2){
-    formData.append("file", file2 as File);
+    formData2.append("file", file2 as File);
     
     await fetch(urlBase+"/upload?idCar="+idCar, {
         method: "POST",
-        body: formData,
+        body: formData2,
     })
+}
+     
+   }
+   catch(error){
+    console.log(error);
+    
+
+   }
+   finally{
+     setIsloading(false)
+      toast({
+        title:"car creation",
+        description:"the car "+values.brand+" is successfully created"
+      })
+      window.location.reload
    }
     
   }
@@ -227,7 +258,7 @@ export function NewCarForm() {
           </FormItem>
         </div>
 
-        <Button type="submit">Submit</Button>
+         <Button type="submit" >{!isLoading?"submit":<div className="w-6 h-6 border-t-2 border-b-black rounded-full animate-spin"></div>}</Button>
       </form>
     </Form>
   );
