@@ -111,7 +111,7 @@ try{
         title:"car creation",
         description:"the car "+values.brand+" is successfully created"
       })
-      window.location.reload
+      window.location.reload()
    }
     
   }
