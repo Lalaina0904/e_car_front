@@ -1,1 +1,1 @@
-export const urlBase = "https://e-commerce-back-2tyn.onrender.com";
+export const urlBase = "https://e-car-back.onrender.com";
