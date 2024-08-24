@@ -60,7 +60,7 @@ export const CarList=()=>{
     </Dialog>
             <section className="">
                 <div>
-                    <div className="text-xl text-neutral-100 grid grid-cols-4 gap-3 w-full">
+                    <div className="text-xl text-neutral-100 grid lg:grid-cols-4 grid-cols-1 gap-3 w-full">
                         {
                             cars.map((car)=><Car car={car} key={car.id}/>)
                         }

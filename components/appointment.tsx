@@ -90,7 +90,7 @@ const Appointment = ({ appointment }: { appointment: Appointment }) => {
   };
   return (
     <div>
-      <div className="flex justify-between items-center bg-white p-5 rounded-xl shadow-xl">
+      <div className="flex lg:flex-row flex-col lg:justify-between items-center bg-white p-5 rounded-xl shadow-xl">
         <div className="flex flex-col gap-4 ">
           <div className="flex flex-row gap-1">
             <div className="font-semibold capitalize">name :</div>
@@ -113,10 +113,10 @@ const Appointment = ({ appointment }: { appointment: Appointment }) => {
             <div>{appointment.message}</div>
           </div>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex lg:flex-col gap-2">
          {
           appointment.status==="pending"?
-          <div className="flex flex-col gap-3">
+          <div className="flex lg:flex-col gap-3 flex-row pt-5">
              <Button
             className="bg-[#013248] uppercase"
             onClick={() => handleStatus(appointment.id, "valide")}
