@@ -67,6 +67,8 @@ const Cards = ({searchQuery}:CardProps) => {
         const data = await response;
         if (Array.isArray(data)) {
           setCars(data);
+          console.log("io ny data",data);
+          
         } else {
           console.error("Response is not an array:", data);
         }

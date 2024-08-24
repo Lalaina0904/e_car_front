@@ -21,6 +21,8 @@ type CarPageProps = {
 };
 const page=async({params}:CarPageProps)=>{
     const cars:Car[] = await fetchCarByBrand(params.name) || [];
+    console.log(cars);
+    
     return(
          <>
       <section className="container mx-auto w-full py-4">
@@ -32,11 +34,12 @@ const page=async({params}:CarPageProps)=>{
         <div className="text-center text-4xl mb-4 text-[#1b2c34]">The list of {params.name} cars</div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {
-            cars.length==0? <div className="text-center text-2xl">no cars found</div>:
-            cars.map((car) => (
+            cars.length!=0?  cars.map((car) => (
             <Car id={car.id} model={car.model} price={car.price} motorType={car.motorType} power={car.power} pics={car.pics}
              key={car.id} description={car.description} />
-          ))}
+          )) :<div className="text-center text-2xl">no cars found</div>
+          
+          }
         </div>
       </section>
     </>

@@ -21,7 +21,7 @@ const Filters = ({onSelect}:FilterProps) => {
   };
  return (
     <div className="container mx-auto flex justify-between my-14">
-      <div className="flex gap-4">
+      <div className="grid grid-cols-3 lg:grid-cols-6">
         {/* Car Type */}
         <select onChange={handleChange} className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto p-2 outline-none text-gray-600">
           <option value="">Car Type</option>

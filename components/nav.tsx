@@ -121,10 +121,10 @@ const Nav = ({onSearch}:NavProps) => {
         {/* --- nav bar --- */}
 
         <div className="bg-background">
-          <div className="container flex items-center justify-between py-6 nav-bar">
+          <div className="container flex flex-row gap-1 items-center justify-between py-6 nav-bar w-full">
             <div className="flex">
               {/* --- lgo --- */}
-              <div className="flex me-8 items-center">
+              <div className="flex items-center">
                 <Link
                   href="/"
                   className="uppercase font-bold text-[#013248] text-2xl hidden md:block"
@@ -156,8 +156,8 @@ const Nav = ({onSearch}:NavProps) => {
 
             {/* --- Search bar --- */}
 
-            <div>
-              <div className="relative w-80">
+            <div className="">
+              <div className="relative lg:w-80  w-60">
                 <Input
                 onChange={handleChange}
                   type="search"

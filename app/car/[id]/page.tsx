@@ -78,7 +78,7 @@ const page = async ({params}:CarPageProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 border">
           <div className="col-span-3 mr-10">
             <h2 className="text-xl font-semibold text-slate-700">
               {car.model}
