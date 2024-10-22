@@ -26,9 +26,10 @@ const Filters = ({onSelect}:FilterProps) => {
 
 
 
-        {/* Color */}
+                {/* Color */}
         <select onChange={handleChange} className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto p-2 outline-none text-gray-600">
-          <option value="">Color</option>
+          <option value="" disabled selected hidden>Choose a color</option>
+          <option value="">All</option>
           <option value="black">Black</option>
           <option value="white">White</option>
           <option value="red">Red</option>
@@ -37,9 +38,10 @@ const Filters = ({onSelect}:FilterProps) => {
 
         {/* Material */}
         <select onChange={handleChange} className="focus:ring-offset-0 focus:ring-0 border-none bg-slate-200 bg-opacity-60 rounded-full w-auto p-2 outline-none text-gray-600">
-          <option value="">Motor type</option>
-          <option value="plastic">diesel</option>
-          <option value="metal">electric</option>
+          <option value="" disabled selected hidden>Choose motor type</option>
+          <option value="">All</option>
+          <option value="diesel">Diesel</option>
+          <option value="electric">Electric</option>
         </select>
 
       
