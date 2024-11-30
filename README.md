@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# E-CAR
+This is an application designed for car sell management .
+### 1-Landing page
+There is a landing page where a lambda user can :
+* find car list 
+* filter cars by brand,color,motor type
+* see car details and take an appointment if interested
 
-## Getting Started
+![landing page](public/landing.png)
 
-First, run the development server:
+### 2-Admin dashboard
+This is a secured page that is only available for athenticated admin. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+In this page ,the admin can:
+* the add a sub admin
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* Validate or reject appointment made by 
+users 
+* Add new car (that will be available into the landing page)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Delete car on the list when it's not available anymore
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+#### user:
 
-To learn more about Next.js, take a look at the following resources:
+![user list](/public/user.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### appointment :
+![appointment](/public/appointment.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### car:
+![car](/public/car.png)
